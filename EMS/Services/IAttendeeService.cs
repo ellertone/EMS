@@ -10,5 +10,10 @@ namespace EMS.Services
 
         List<AttendeeDto> GetByAttendeeId(int attendeeId);
 
+        int SaveAttendee(AttendeeDto attendee);
+
+        int UpdateAttendee(AttendeeDto attendee);
+        int DeleteAttendee(int attendeeId);
+
     }
 }

@@ -56,5 +56,39 @@ namespace EMS.Services
             }
         }
 
+        public int SaveAttendee(AttendeeDto attendee)
+        {
+            using (var conn = Connection)
+            {
+                var query = "INSERT INTO Attendees (AttendeeId, Name, Email, Phone, EventId) VALUES (@AttendeeId, @Name, @Email, @Phone, @EventId)";
+                var result = conn.Execute(query, new { AttendeeId = attendee.AttendeeId, Name = attendee.Name, Email = attendee.Email, Phone = attendee.Phone, EventId = attendee.EventId });
+                return result;
+            }
+        }
+
+        public int UpdateAttendee(AttendeeDto attendee)
+        {
+            using (var conn = Connection)
+            {
+                var query = "UPDATE Attendees SET Name = @Name, Email = @Email, Phone = @Phone, EventId = @EventId WHERE AttendeeId = @AttendeeId";
+                var result = conn.Execute(query, new { AttendeeId = attendee.AttendeeId, Name = attendee.Name, Email = attendee.Email, Phone = attendee.Phone, EventId = attendee.EventId });
+                return result;
+            }
+        }
+
+        public int DeleteAttendee(int attendeeId)
+        {
+            using (var conn = Connection)
+            {
+                var query = "DELETE FROM Attendees WHERE AttendeeId = @AttendeeId";
+                var result = conn.Execute(query, new { AttendeeId = attendeeId });
+                return result;
+            }
+        }
+
+
+
+
+
     }
 }

@@ -3,6 +3,7 @@ using HotChocolate.Execution.Processing;
 using EMS.QueryResolver;
 using EMS.Services;
 using EMS.DTO;
+using EMS.MutationResolver;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,9 @@ builder.Services.AddSwaggerGen();
 //Made by me
 builder.Services.AddGraphQLServer()
     .AddQueryType(q => q.Name("Query"))
-    .AddType<AttendeeQueryResolver>();
+    .AddType<AttendeeQueryResolver>()
+    .AddMutationType(m => m.Name("Mutation"))
+    .AddType<AttendeeMutationResolver>();
 
 builder.Services.AddScoped<IAttendeeService,AttendeeService>();
 

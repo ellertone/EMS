@@ -22,5 +22,7 @@ namespace EMS.QueryResolver
         {
             return attendeeService.GetByAttendeeId(attendeeId);
         }
+
+       
     }
 }
